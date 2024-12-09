@@ -68,29 +68,29 @@ class ProfileScreen extends StatelessWidget {
           const Divider(),
 
           // Other Profile Options
-          ListTile(
-            leading: SvgPicture.asset(
-              "assets/icons/Return.svg",
-              height: 24,
-              width: 24,
-              colorFilter:
-              const ColorFilter.mode(Colors.green, BlendMode.srcIn),
-            ),
-            title: const Text("Returns"),
-            trailing: const Icon(Icons.arrow_forward_ios),
-            onTap: () {},
-          ),
-          ListTile(
-            leading: SvgPicture.asset(
-              "assets/icons/Wishlist.svg",
-              height: 24,
-              width: 24,
-              colorFilter: const ColorFilter.mode(Colors.pink, BlendMode.srcIn),
-            ),
-            title: const Text("Wishlist"),
-            trailing: const Icon(Icons.arrow_forward_ios),
-            onTap: () {},
-          ),
+          // ListTile(
+          //   leading: SvgPicture.asset(
+          //     "assets/icons/Return.svg",
+          //     height: 24,
+          //     width: 24,
+          //     colorFilter:
+          //     const ColorFilter.mode(Colors.green, BlendMode.srcIn),
+          //   ),
+          //   title: const Text("Returns"),
+          //   trailing: const Icon(Icons.arrow_forward_ios),
+          //   onTap: () {},
+          // ),
+          // ListTile(
+          //   leading: SvgPicture.asset(
+          //     "assets/icons/Wishlist.svg",
+          //     height: 24,
+          //     width: 24,
+          //     colorFilter: const ColorFilter.mode(Colors.pink, BlendMode.srcIn),
+          //   ),
+          //   title: const Text("Wishlist"),
+          //   trailing: const Icon(Icons.arrow_forward_ios),
+          //   onTap: () {},
+          // ),
           const Divider(),
 
           // Log Out Button

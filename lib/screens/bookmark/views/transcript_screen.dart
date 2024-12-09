@@ -76,7 +76,7 @@ class TranscriptScreen extends StatelessWidget {
                             entry['message'],
                             style: const TextStyle(fontSize: 16),
                           ),
-                          const Divider(thickness: 1),
+                          const Divider(thickness: 0.1),
                         ],
                       ),
                     );

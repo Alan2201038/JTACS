@@ -8,10 +8,11 @@ class NextOfKinScreen extends StatefulWidget {
 }
 
 class _NextOfKinScreenState extends State<NextOfKinScreen> {
+  // Correct list type to handle mixed types
   final List<Map<String, dynamic>> nextOfKinList = [];
   final TextEditingController nameController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
-  bool notifyEmergencyContact = false; // Checkbox state
+  bool notifyEmergencyContact = false;
 
   void addNextOfKin() {
     final name = nameController.text.trim();
@@ -22,13 +23,13 @@ class _NextOfKinScreenState extends State<NextOfKinScreen> {
         nextOfKinList.add({
           "name": name,
           "phone": phone,
-          "notify": notifyEmergencyContact, // Save checkbox value
+          "notify": notifyEmergencyContact, // Boolean value
         });
       });
 
       nameController.clear();
       phoneController.clear();
-      notifyEmergencyContact = false; // Reset checkbox state
+      notifyEmergencyContact = false;
 
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("Next of Kin added!")),
@@ -119,8 +120,10 @@ class _NextOfKinScreenState extends State<NextOfKinScreen> {
                   return Card(
                     margin: const EdgeInsets.symmetric(vertical: 8.0),
                     child: ListTile(
-                      title: Text(kin['name']!),
-                      subtitle: Text("Phone: ${kin['phone']}\nNotify: ${kin['notify'] ? 'Yes' : 'No'}"),
+                      title: Text(kin['name']),
+                      subtitle: Text(
+                        "Phone: ${kin['phone']}\nNotify: ${kin['notify'] ? 'Yes' : 'No'}",
+                      ),
                       trailing: IconButton(
                         icon: const Icon(Icons.delete, color: Colors.red),
                         onPressed: () => removeNextOfKin(index),
