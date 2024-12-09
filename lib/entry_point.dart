@@ -12,13 +12,13 @@ class EntryPoint extends StatefulWidget {
 }
 
 class _EntryPointState extends State<EntryPoint> {
-  final List _pages = const [
-    HomeScreen(),
-    DetectionHistoryScreen(),
+  final List _pages = [
+    const HomeScreen(),
+    const DetectionHistoryScreen(),
     TranscriptScreen(),
     // EmptyCartScreen(), // if Cart is empty
-    CartScreen(),
-    ProfileScreen(),
+    const CartScreen(),
+    const ProfileScreen(),
   ];
   int _currentIndex = 0;
 
