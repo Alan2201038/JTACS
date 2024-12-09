@@ -1,0 +1,65 @@
+### GET request to example server
+GET https://examples.http-client.intellij.net/get
+    ?generated-in=PyCharm
+
+### Add 1st user
+POST http://localhost:5000/api/register
+Content-Type: application/json
+
+{
+  "name": "Chee Hean",
+  "contact_number": "81101234"
+}
+
+> {% client.global.set("user_id_1", response.body.user_id); %}
+
+### Add 2nd user (for contact)
+POST http://localhost:5000/api/register
+Content-Type: application/json
+
+{
+  "name": "Alan",
+  "contact_number": "81104321"
+}
+
+> {% client.global.set("user_id_2", response.body.user_id); %}
+
+### Add alert contact
+POST http://localhost:5000/api/add_alert_contact
+Content-Type: application/json
+
+{
+  "user": "{{user_id_1}}",
+  "contact": "81104321"
+}
+
+### Start call
+POST http://localhost:5000/api/start_call
+Content-Type: application/json
+
+{
+  "caller": "+6512345678",
+  "user": "{{user_id_1}}"
+}
+
+> {% client.global.set("call_id", response.body.call_id); %}
+
+### Record call
+POST http://localhost:5000/api/call_recording?call_id={{call_id}}&sequence=0
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="recording"; filename="sample_00.m4a"
+Content-Type: application/json
+
+< ./sample/sample_00.m4a
+--WebAppBoundary--
+
+### End call
+GET http://localhost:5000/api/end_call/{{call_id}}
+
+### Poll for alerts
+GET http://localhost:5000/api/poll_scam_alert/{{user_id_1}}
+
+### Get transcript
+GET http://localhost:5000/api/get_transcript/{{call_id}}

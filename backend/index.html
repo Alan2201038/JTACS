@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Streaming</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.1/socket.io.min.js"></script>
+</head>
+<body>
+    <h1>Audio Streaming Example</h1>
+    <button id="start">Start Streaming</button>
+    <button id="stop" disabled>Stop Streaming</button>
+    <p id="status">Idle</p>
+
+    <script>
+        let mediaRecorder;
+        let socket;
+        const status = document.getElementById('status');
+        const startButton = document.getElementById('start');
+        const stopButton = document.getElementById('stop');
+
+        startButton.addEventListener('click', async () => {
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            mediaRecorder = new MediaRecorder(stream, { mimeType: 'audio/webm' });
+
+            // Establish WebSocket connection
+            socket = io('ws://localhost:5000');
+
+            socket.onopen = () => {
+                status.textContent = 'Streaming...';
+                mediaRecorder.start(250); // Send chunks every 250ms
+            };
+
+            socket.onerror = (error) => {
+                console.error('WebSocket Error:', error);
+                status.textContent = 'Error occurred.';
+            };
+
+            mediaRecorder.ondataavailable = (event) => {
+                console.log("Data available")
+                if (socket.readyState === WebSocket.OPEN) {
+                    socket.send(event.data);
+                }
+            };
+
+            mediaRecorder.onstop = () => {
+                socket.close();
+                status.textContent = 'Stopped.';
+            };
+
+            startButton.disabled = true;
+            stopButton.disabled = false;
+        });
+
+        stopButton.addEventListener('click', () => {
+            mediaRecorder.stop();
+            startButton.disabled = false;
+            stopButton.disabled = true;
+        });
+    </script>
+</body>
+</html>

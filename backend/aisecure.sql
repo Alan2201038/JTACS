@@ -1,0 +1,23 @@
+CREATE TABLE IF NOT EXISTS users (
+    id TEXT PRIMARY KEY,
+    name TEXT NOT NULL,
+    contact_number TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS calls (
+    id TEXT PRIMARY KEY,
+    caller TEXT NOT NULL,
+    user TEXT NOT NULL,
+    transcript TEXT NOT NULL DEFAULT "",
+    status TEXT NOT NULL DEFAULT "in_progress",
+    scam_detected INT NOT NULL DEFAULT 0,
+    scam_type TEXT DEFAULT NULL,
+    timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS alert_contact(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user TEXT NOT NULL,
+    contact TEXT NOT NULL,
+    active INT NOT NULL DEFAULT 1
+);
