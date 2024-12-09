@@ -37,7 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   const SizedBox(height: defaultPadding / 2),
                   const Text(
-                    "Log in with your data that you intered during your registration.",
+                    "Log in with your data that you entered during your registration.",
                   ),
                   const SizedBox(height: defaultPadding),
                   LogInForm(formKey: _formKey),
@@ -57,12 +57,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      if (_formKey.currentState!.validate()) {
                         Navigator.pushNamedAndRemoveUntil(
                             context,
                             entryPointScreenRoute,
                             ModalRoute.withName(logInScreenRoute));
-                      }
                     },
                     child: const Text("Log in"),
                   ),

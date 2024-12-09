@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shop/screens/infoscam/info.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -56,12 +57,12 @@ class HomeScreen extends StatelessWidget {
                         spacing: 8,
                         runSpacing: 8,
                         children: [
-                          _buildInfoChip("Phishing"),
-                          _buildInfoChip("Urgency"),
-                          _buildInfoChip("One-Time Password (OTP)"),
-                          _buildInfoChip("Fake Loan Offers"),
-                          _buildInfoChip("Suspicious Links"),
-                          _buildInfoChip("Too Good to Be True"),
+                          _buildInfoChip(context, "Phishing"),
+                          _buildInfoChip(context, "Urgency"),
+                          _buildInfoChip(context, "One-Time Password (OTP)"),
+                          _buildInfoChip(context, "Fake Loan Offers"),
+                          _buildInfoChip(context, "Suspicious Links"),
+                          _buildInfoChip(context, "Too Good to Be True"),
                         ],
                       ),
                     ],
@@ -110,15 +111,27 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildInfoChip(String text) {
-    return Chip(
+  Widget _buildInfoChip(BuildContext context, String text) {
+  return GestureDetector(
+    onTap: () {
+      print("asd");
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => InfoDetailScreen(title: text),
+        ),
+      );
+    },
+    child: Chip(
       label: Text(text),
       avatar: const Icon(Icons.info_outline, size: 18),
       backgroundColor: Colors.blue[50],
       labelStyle: const TextStyle(color: Colors.blue),
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-    );
-  }
+    ),
+  );
+}
+
 
   Widget _buildTipRow(IconData icon, String text) {
     return Row(
