@@ -14,8 +14,8 @@ class EntryPoint extends StatefulWidget {
 class _EntryPointState extends State<EntryPoint> {
   final List _pages = const [
     HomeScreen(),
-    DiscoverScreen(),
-    BookmarkScreen(),
+    DetectionHistoryScreen(),
+    TranscriptScreen(),
     // EmptyCartScreen(), // if Cart is empty
     CartScreen(),
     ProfileScreen(),

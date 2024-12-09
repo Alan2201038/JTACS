@@ -1,71 +1,73 @@
 import 'package:flutter/material.dart';
-import 'package:shop/components/Banner/S/banner_s_style_1.dart';
-import 'package:shop/components/Banner/S/banner_s_style_5.dart';
-import 'package:shop/constants.dart';
-import 'package:shop/route/screen_export.dart';
-
-import 'components/best_sellers.dart';
-import 'components/flash_sale.dart';
-import 'components/most_popular.dart';
-import 'components/offer_carousel_and_categories.dart';
-import 'components/popular_products.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: CustomScrollView(
-          slivers: [
-            const SliverToBoxAdapter(child: OffersCarouselAndCategories()),
-            const SliverToBoxAdapter(child: PopularProducts()),
-            const SliverPadding(
-              padding: EdgeInsets.symmetric(vertical: defaultPadding * 1.5),
-              sliver: SliverToBoxAdapter(child: FlashSale()),
-            ),
-            SliverToBoxAdapter(
-              child: Column(
-                children: [
-                  // While loading use 👇
-                  // const BannerMSkelton(),‚
-                  BannerSStyle1(
-                    title: "New \narrival",
-                    subtitle: "SPECIAL OFFER",
-                    discountParcent: 50,
-                    press: () {
-                      Navigator.pushNamed(context, onSaleScreenRoute);
-                    },
-                  ),
-                  const SizedBox(height: defaultPadding / 4),
-                  // We have 4 banner styles, all in the pro version
-                ],
+      appBar: AppBar(
+        title: const Text('ScamShield AI'),
+        centerTitle: true,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Active Call Section
+            Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              elevation: 4,
+              child: ListTile(
+                leading: const Icon(Icons.phone_in_talk, size: 40, color: Colors.green),
+                title: const Text(
+                  'Active Call Monitoring',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                ),
+                subtitle: const Text('AI is actively analyzing your call.'),
+                trailing: const Icon(Icons.arrow_forward_ios),
+                onTap: () {
+                  Navigator.pushNamed(context, '/callDetails');
+                },
               ),
             ),
-            const SliverToBoxAdapter(child: BestSellers()),
-            const SliverToBoxAdapter(child: MostPopular()),
-            SliverToBoxAdapter(
-              child: Column(
-                children: [
-                  const SizedBox(height: defaultPadding * 1.5),
-
-                  const SizedBox(height: defaultPadding / 4),
-                  // While loading use 👇
-                  // const BannerSSkelton(),
-                  BannerSStyle5(
-                    title: "Black \nfriday",
-                    subtitle: "50% Off",
-                    bottomText: "Collection".toUpperCase(),
-                    press: () {
-                      Navigator.pushNamed(context, onSaleScreenRoute);
-                    },
-                  ),
-                  const SizedBox(height: defaultPadding / 4),
-                ],
+            const SizedBox(height: 20),
+            // Detection History Section
+            Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              elevation: 4,
+              child: ListTile(
+                leading: const Icon(Icons.history, size: 40, color: Colors.blue),
+                title: const Text(
+                  'Detection History',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                ),
+                subtitle: const Text('Review past scam detections.'),
+                trailing: const Icon(Icons.arrow_forward_ios),
+                onTap: () {
+                  Navigator.pushNamed(context, '/detectionHistory');
+                },
               ),
             ),
-            const SliverToBoxAdapter(child: BestSellers()),
+            const SizedBox(height: 20),
+            // Settings Section
+            Center(
+              child: ElevatedButton.icon(
+                icon: const Icon(Icons.settings),
+                label: const Text('Settings'),
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                ),
+                onPressed: () {
+                  Navigator.pushNamed(context, '/settings');
+                },
+              ),
+            ),
           ],
         ),
       ),

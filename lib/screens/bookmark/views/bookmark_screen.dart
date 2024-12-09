@@ -1,50 +1,49 @@
 import 'package:flutter/material.dart';
-import 'package:shop/components/product/product_card.dart';
-import 'package:shop/models/product_model.dart';
-import 'package:shop/route/route_constants.dart';
 
-import '../../../constants.dart';
+class TranscriptScreen extends StatelessWidget {
+  final List<Map<String, String>> transcriptData = [
+    {"time": "10:00 AM", "speaker": "Caller", "message": "Hello, this is John from XYZ company."},
+    {"time": "10:01 AM", "speaker": "You", "message": "Hi John, how can I help you?"},
+    {"time": "10:02 AM", "speaker": "Caller", "message": "We are offering a limited-time investment opportunity."},
+    {"time": "10:03 AM", "speaker": "You", "message": "I’m not interested, thank you."},
+  ];
 
-class BookmarkScreen extends StatelessWidget {
-  const BookmarkScreen({super.key});
+  const TranscriptScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          // While loading use 👇
-          //  BookMarksSlelton(),
-          SliverPadding(
-            padding: const EdgeInsets.symmetric(
-                horizontal: defaultPadding, vertical: defaultPadding),
-            sliver: SliverGrid(
-              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: 200.0,
-                mainAxisSpacing: defaultPadding,
-                crossAxisSpacing: defaultPadding,
-                childAspectRatio: 0.66,
+      appBar: AppBar(
+        title: const Text('Call Transcript'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: ListView.builder(
+          itemCount: transcriptData.length,
+          itemBuilder: (context, index) {
+            final entry = transcriptData[index];
+            return Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "${entry['time']} - ${entry['speaker']}",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: entry['speaker'] == "You" ? Colors.blue : Colors.black,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    entry['message']!,
+                    style: const TextStyle(fontSize: 16),
+                  ),
+                ],
               ),
-              delegate: SliverChildBuilderDelegate(
-                (BuildContext context, int index) {
-                  return ProductCard(
-                    image: demoPopularProducts[index].image,
-                    brandName: demoPopularProducts[index].brandName,
-                    title: demoPopularProducts[index].title,
-                    price: demoPopularProducts[index].price,
-                    priceAfetDiscount:
-                        demoPopularProducts[index].priceAfetDiscount,
-                    dicountpercent: demoPopularProducts[index].dicountpercent,
-                    press: () {
-                      Navigator.pushNamed(context, productDetailsScreenRoute);
-                    },
-                  );
-                },
-                childCount: demoPopularProducts.length,
-              ),
-            ),
-          ),
-        ],
+            );
+          },
+        ),
       ),
     );
   }
