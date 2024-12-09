@@ -1,8 +1,29 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:shop/main.dart';
 import 'package:shop/screens/infoscam/info.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+
+    // Trigger the notification after 1 second
+    Timer(const Duration(seconds: 1), () {
+      print("Timer");
+      showNotification(
+        "Your Next of Kin Uncle Lim may be getting scammed!",
+        "Click on me to find out more.",
+      );
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -112,26 +133,32 @@ class HomeScreen extends StatelessWidget {
   }
 
   Widget _buildInfoChip(BuildContext context, String text) {
-  return GestureDetector(
-    onTap: () {
-      print("asd");
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => InfoDetailScreen(title: text),
-        ),
-      );
-    },
-    child: Chip(
-      label: Text(text),
-      avatar: const Icon(Icons.info_outline, size: 18),
-      backgroundColor: Colors.blue[50],
-      labelStyle: const TextStyle(color: Colors.blue),
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-    ),
-  );
-}
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => InfoDetailScreen(title: text),
+          ),
+        );
 
+        // Optionally trigger a notification when the chip is tapped
+        Timer(const Duration(seconds: 1), () {
+          showNotification(
+            "Learn More About $text!",
+            "Explore details on $text to stay scam-free.",
+          );
+        });
+      },
+      child: Chip(
+        label: Text(text),
+        avatar: const Icon(Icons.info_outline, size: 18),
+        backgroundColor: Colors.blue[50],
+        labelStyle: const TextStyle(color: Colors.blue),
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      ),
+    );
+  }
 
   Widget _buildTipRow(IconData icon, String text) {
     return Row(

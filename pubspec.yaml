@@ -21,6 +21,7 @@ dependencies:
   animations: ^2.0.11
   url_launcher: ^6.3.0
   flutter_vibrate: ^1.0.2
+  flutter_local_notifications: ^15.0.0
 
 
 dev_dependencies:

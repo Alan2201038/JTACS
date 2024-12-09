@@ -3,6 +3,7 @@ import 'package:shop/entry_point.dart';
 
 import '../screens/checkout/views/callMonitoringScreen.dart';
 import 'screen_export.dart';
+import '../screens/infoscam/notif_Transcript.dart';
 
 // Yuo will get 50+ screens and more once you have the full template
 // 🔗 Full template: https://theflutterway.gumroad.com/l/fluttershop
@@ -147,6 +148,10 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case homeScreenRoute:
       return MaterialPageRoute(
         builder: (context) => const HomeScreen(),
+      );
+    case transcriptRoute:
+      return MaterialPageRoute(
+        builder: (context) =>  NextOfKinTranscriptScreen(),
       );
     // case brandScreenRoute:
     //   return MaterialPageRoute(
