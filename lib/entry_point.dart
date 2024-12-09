@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shop/constants.dart';
 import 'package:shop/route/screen_export.dart';
+import 'package:shop/screens/checkout/views/callMonitoringScreen.dart';
 
 class EntryPoint extends StatefulWidget {
   const EntryPoint({super.key});
@@ -17,7 +18,7 @@ class _EntryPointState extends State<EntryPoint> {
     const DetectionHistoryScreen(),
     TranscriptScreen(),
     // EmptyCartScreen(), // if Cart is empty
-    const CartScreen(),
+    const CallMonitoringScreen(),
     const ProfileScreen(),
   ];
   int _currentIndex = 0;

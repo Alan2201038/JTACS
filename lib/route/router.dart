@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shop/entry_point.dart';
 
+import '../screens/checkout/views/callMonitoringScreen.dart';
 import 'screen_export.dart';
 
 // Yuo will get 50+ screens and more once you have the full template
@@ -285,7 +286,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       );
     case cartScreenRoute:
       return MaterialPageRoute(
-        builder: (context) => const CartScreen(),
+        builder: (context) =>  CallMonitoringScreen(),
       );
     // case paymentMethodScreenRoute:
     //   return MaterialPageRoute(
