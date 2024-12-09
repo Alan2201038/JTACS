@@ -39,47 +39,19 @@ class _EntryPointState extends State<EntryPoint> {
 
     return Scaffold(
       appBar: AppBar(
-        // pinned: true,
-        // floating: true,
-        // snap: true,
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        leading: const SizedBox(),
-        leadingWidth: 0,
-        centerTitle: false,
-        title: SvgPicture.asset(
-          "assets/logo/Shoplon.svg",
-          colorFilter: ColorFilter.mode(
-              Theme.of(context).iconTheme.color!, BlendMode.srcIn),
-          height: 20,
-          width: 100,
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.pushNamed(context, searchScreenRoute);
-            },
-            icon: SvgPicture.asset(
-              "assets/icons/Search.svg",
-              height: 24,
-              colorFilter: ColorFilter.mode(
-                  Theme.of(context).textTheme.bodyLarge!.color!,
-                  BlendMode.srcIn),
-            ),
-          ),
-          IconButton(
-            onPressed: () {
-              Navigator.pushNamed(context, notificationsScreenRoute);
-            },
-            icon: SvgPicture.asset(
-              "assets/icons/Notification.svg",
-              height: 24,
-              colorFilter: ColorFilter.mode(
-                  Theme.of(context).textTheme.bodyLarge!.color!,
-                  BlendMode.srcIn),
-            ),
-          ),
-        ],
-      ),
+  backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+  leading: const SizedBox(),
+  leadingWidth: 0,
+  centerTitle: false,
+  title: Text(
+    "AISecure",
+    style: TextStyle(
+      fontSize: 20,
+      fontWeight: FontWeight.bold,
+      color: Theme.of(context).iconTheme.color,
+    ),
+  ),
+),
       // body: _pages[_currentIndex],
       body: PageTransitionSwitcher(
         duration: defaultDuration,
